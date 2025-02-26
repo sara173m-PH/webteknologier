@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(255, 176, 124);
+}
+
+/* overskrift h1 design */
+h1{
+font-style: Times;
+font-size: 50px;
+color:rgb(31, 70, 55) ;
+text-align: center;
+}
+
+h2{
+  color: rgb(31, 71, 57);
+  font-size: 25px;
+  font-style: Helvetica;
+}
+
+pre{
+  background-color: rgb(31, 70, 55);
+}
+a {
+  display: block;  /* Gør links til block-elementer */
+  margin: 10px 0; /* Tilføjer afstand mellem links */
+}
+
+
+.boxFloatRighe{
+float: right;
+background-color: rgb(61, 127, 109);
+width: 40%;
+height: 40%;
+overflow: hidden;
+font-size: 40;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
