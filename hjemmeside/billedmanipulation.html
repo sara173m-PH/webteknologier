@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="myStyle.css">
+        <title>Billed manipulation</title>
+        </head>
+<body>
+<h1>Billedmanipulation</h1>
+<h3>Projekt beskrivelse:</h3>
+<div class="tekstboks">
+  <p>
+    Med udgangspunkt i følgende case, skal du udvikle en del af en løsning.
+    Alle ved at billeder af hvordan verden, og især os selv, ser ud er dybt uinteressante. For at ændre på dette skal I lave et billedbehandlingsprogram.
+    
+    </p>
+    <p>
+        I skal derfor udvikle et program, der:
+       
+    </p>
+    <ul>
+        <li>Kan redigere et billede ved manipulation på pixelniveau.</li>
+        <li>Kan tilføje effekter.</li>
+    </ul>
+    <p>
+        I den forbindelse skal I have fokus på brugeren hvor I skal:
+    </p>
+    <ul>
+        <li>Bestemme hvad der er kerne- og sekundære-faciliteter.</li>
+        <li>Udføre en brugertest og en tilretning af projektet.</li>
+    </ul>
+    <p>
+        I logbogen skal I dokumentere arbejdsprocessen og produktet undervejs.
+    </p>
+
+</div>
+<h3>Vores projekt:</h3>
+
+<div class="tekstboks">
+    <h4>
+        ColorChanger
+    </h4>
+    <div class="tekstboks-container">
+    <p>
+        Vores program går ud på, at brugeren kan ændre RGB-værdierne for udvalgte pixels i et billede ved hjælp af en begrænsningsværdi. Det gør det muligt at ændre farven på et specifikt objekt i billedet. I vores prototype har vi anvendt et billede af Barack Obama, hvor vi har ændret de pixels, der repræsenterer hans hudfarve.
+
+For at gøre programmet mere brugervenligt har vi implementeret nogle sekundære faciliteter, såsom sliders, der hver især justerer henholdsvis den røde, grønne eller blå farve i billedet. Disse sliders er tydeligt markeret med tekst, så brugeren nemt kan se, hvilken farve de styrer. Dette gør det enkelt for brugeren at vælge, hvilken farve de ønsker at ændre objektet til.
+
+    </p>
+    <img src="Obama.png" style="width: 30%; height: auto;" >
+</div>
+</div>
+<a href="https://laurbadaur.github.io/webteklau/Billedmanipulation-master/index.html" class="boks">
+    Vores program 
+    </a>
+<h3>Kodestump:</h3>
+
+<div class="tekstboks">
+    <img src="sliders.png" style="width: 50%; height: auto;">
+  
+        
+<h5>
+    Oprettelse af Tekst for Rød:
+</h5> 
+<p>
+    koden opretter teksten "Red:" i rød farve ved at bruge createP('Red:').
+    position(5, hy - 4) placerer teksten tæt på slideren for den røde værdi.
+</p>
+<h5>
+    Oprettelse af Rød Slider: 
+</h5>
+<p>
+rSlider = createSlider(0, 255, 0) opretter en slider, der kan justeres mellem 0 (ingen rød farve) og 255 (fuld rød farve).
+Sliderens position bestemmes også med rSlider.position(x, h + 10) for at placere den under teksten "Red:".
+</p>
+
+<h5>
+    Registrering af Input fra Slider:
+</h5>
+<p>
+    rSlider.input(loop) registrerer, når brugeren justerer slideren.
+    loop()-funktionen opdaterer farven i realtid baseret på sliderens værdi. 
+</p>
+
+<h5>
+    Gentagelse for Grøn og Blå:  
+</h5>
+<p>
+    De samme trin gentages for de grønne og blå værdier.
+    For grøn: createP('Green:'), gSlider = createSlider(0, 255, 0), og så videre.
+    For blå: createP('Blue:'), bSlider = createSlider(0, 255, 120).   
+</p>
+<img src="let.png"style="width: 50%; height: auto;">
+
+<h5>
+    Variabeldeklaration: 
+</h5>
+<p>
+let rAdjust = rSlider.value();
+</p>
+let gAdjust = gSlider.value();
+<p>
+let bAdjust = bSlider.value();
+</p>
+<p>
+Disse linjer deklarerer tre variabler: rAdjust, gAdjust og bAdjust. Hver af disse vil holde værdien fra den respektive slider.
+</p>
+
+<h5>
+    Hentning af Slider Værdier:
+</h5>
+
+<p>
+    .value()-metoden bruges til at hente den aktuelle værdi fra sliderne rSlider, gSlider og bSlider.
+    For eksempel, hvis brugeren justerer den røde slider, vil rSlider.value() returnere den nuværende værdi af den slider, som kan være mellem 0 og 255. 
+</p>
+<h5>
+    Opbevaring af Farvejusteringer:
+</h5>
+<p>
+
+    Værdierne, der hentes fra sliderne, gemmes i variablerne, så de kan bruges senere i programmet, for eksempel til at ændre farven på et objekt.
+</p>
+<img src="if.png" style="width: 50%; height: auto;">
+<h5>
+    Betinget Udførelse:
+</h5>
+<p>
+    if ((r > g && r > b) || (r + b + g > 60 && (r + b + g) / 3 > 14)) { 
+</p>
+<p>
+
+
+    Denne betingelse tjekker to ting:
+</p>
+<p>
+    Om den røde værdi (r) er større end både den grønne (g) og blå (b) værdi.
+    Eller om summen af RGB-værdierne er større end 60, og gennemsnittet af dem er større end 14.
+    Hvis en af disse betingelser er sand, udføres koden inden for {}.
+</p>
+<h5>
+    Opdatering af B-laget: 
+</h5>
+<p>
+    b = b * 0.6 + bAdjust;
+</p>
+<p>
+    Denne linje justerer den blå værdi (b).
+    Den nuværende værdi af b multipliceres med 0.6, hvilket reducerer den, og derefter tilføjes værdien fra slideren (bAdjust).
+    Dette kan resultere i, at den blå farve bliver lysere, hvis slideren er høj, eller mørkere, hvis slideren er lav.
+</p>
+<h5>
+    Opdatering af R-laget: 
+</h5>
+<p>
+    r = r * 0.6 + rAdjust;
+</p>   
+<p>
+    Tilsvarende justeres den røde værdi (r) på samme måde som den blå. Den nuværende værdi multipliceres med 0.6, og den justerede værdi fra slideren (rAdjust) tilføjes.
+</p>
+<h5>
+    Opdatering af G-laget:  
+</h5>
+<p>
+    g = g * 0.6 + gAdjust;
+</p> 
+<p>
+    Den grønne værdi (g) justeres på samme måde som de øvrige farver.
+</p>
+</div>
+<h3>
+    Hvordan opfylder den projektbeskrivelsen?
+</h3>
+<div class="tekstboks">
+
+<P>
+    Vores projekt fokuserer på at redigere billeder ved manipulation på pixelniveau, hvilket er i tråd med kravene i projektbeskrivelsen.
+</P>
+<h5>
+Kerne-faciliteter 
+</h5>
+<p>
+    Pixelomdannelse via RGB-værdiændring  
+</p>
+<P>
+    Den primære facilitet i vores projekt er evnen til at ændre RGB-værdierne for specifikke pixels i et billede. Dette gør det muligt for brugeren at ændre farven på objekter i billedet ved simpelthen at justere værdierne for rød, grøn og blå. Afhængigt af de angivne kriterier for hver farve (r, g, b) kan brugeren opnå en bred vifte af farveændringer, hvilket giver mulighed for præcise og målrettede justeringer.
+</P>
+<h5>
+Sekundære-faciliteter  
+</h5>
+<p>
+    Brugervenlige Sliders  
+</p>
+<P>
+    For at gøre vores applikation mere brugervenlig har vi implementeret sliders, som giver brugeren mulighed for nemt at justere RGB-værdierne i realtid. Disse sliders er intuitivt designet og gør det muligt for brugeren at se ændringerne i farverne straks, hvilket forbedrer den samlede brugeroplevelse og interaktivitet.
+</P>
+<h5>
+Næste Skridt   
+</h5>
+<p>
+ Drag-and-Drop Funktionalitet
+</p>
+<p>
+Som et næste skridt planlægger vi at implementere drag-and-drop-funktionalitet. Dette vil yderligere forbedre brugerens interaktion med applikationen ved at gøre det muligt at importere billeder direkte på en enkel og effektiv måde. Dette tiltag vil gøre det lettere for brugerne at arbejde med deres billeder.
+</P>
+</div>
+
+<a href="index.html" class="boks">Tilbage til hovedsiden</a>
+</body>
+</html>
